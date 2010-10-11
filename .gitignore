@@ -1,0 +1,5 @@
+*.log
+debian/log-fetcher*
+debian/files
+build-stamp
+install-stamp

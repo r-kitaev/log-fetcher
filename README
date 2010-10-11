@@ -1,0 +1,27 @@
+Конфиг лога для nginx
+
+  ...
+  log_format log_fetcher '$status $bytes_sent '
+                         '$request_time $upstream_response_time $msec : '
+                         '$remote_addr - [$time_local] '
+                         '"$request"';
+
+  access_log  /var/log/nginx/access.log log_fetcher;
+  ...
+
+-------------------
+
+Использование
+
+  /var/lib/log-fetcher/fetch.sh <delta_time> <request_mask>
+    - <delta_time> - дельта времени в секундах
+    - <request_mask> - маска запроса, например GET/controller/action/{reg}/
+      {reg} - IDS или PARAMS
+
+  Результат
+    {date},{count},{less_500ms},{between_500ms_1000ms},{greater_1000ms}\n
+    - date - дата с точностью до минуты в формате %Y%m%d%H%M
+    - count - суммарное кол-во запросов
+    - less_500ms - кол-во запросов, обработанных быстрее чем за 500ms
+    - between_500ms_1000ms - кол-во запросов, обработанных за время от 500ms до 1000ms
+    - greater_1000ms - кол-во запросов, обработанных за время более 1000ms

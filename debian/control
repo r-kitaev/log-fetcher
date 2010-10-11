@@ -1,0 +1,11 @@
+Source: log-fetcher
+Priority: optional
+Maintainer: Knyazev Andrey <knevcher@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Section: devel
+
+Package: log-fetcher
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, gawk
+Description: Tool for parsing nginx access logs
