@@ -2,3 +2,4 @@
 
 LOG_PATH="/var/log/nginx/hh-php-app.access.log"
 PARSER_PATH="/var/lib/log-fetcher/parser.sh"
+DATE_FORMAT="%s"

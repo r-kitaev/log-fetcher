@@ -1,10 +1,7 @@
 Конфиг лога для nginx
 
   ...
-  log_format log_fetcher '$status $bytes_sent '
-                         '$request_time $upstream_response_time $msec : '
-                         '$remote_addr - [$time_local] '
-                         '"$request"';
+  log_format log_fetcher 'hh-favresumes $request $upstream_response_time $msec $status';
 
   access_log  /var/log/nginx/access.log log_fetcher;
   ...
@@ -13,15 +10,37 @@
 
 Использование
 
-  /var/lib/log-fetcher/fetch.sh <delta_time> <request_mask>
+  /var/lib/log-fetcher/fetch.sh <delta_time> <app> <request_path_regexp> [ <mode> ] [ <request_method> ]
     - <delta_time> - дельта времени в секундах
-    - <request_mask> - маска запроса, например GET/controller/action/{reg}/
-      {reg} - IDS или PARAMS
+    - <app> - название пакета
+    - <request_path_regexp> - регулярное выражение, соответствующее пути запроса.
+      Особенности регеспа:
+      - На этот регексп проверяется весь URL, т.е. не нужно писать начало(^) и конец($) строки.
+      - Не нужно экранировать спец символы (слэши в URL, например)
+        Пример: /controller/action/.*
+    - <mode> - режим сбора статистики.
+    - <request_method> - необязательный параметр. Может принимать значения: GET, POST, PUT, DELETE
 
-  Результат
-    {date},{count},{less_500ms},{between_500ms_1000ms},{greater_1000ms}\n
-    - date - дата с точностью до минуты в формате %Y%m%d%H%M
-    - count - суммарное кол-во запросов
-    - less_500ms - кол-во запросов, обработанных быстрее чем за 500ms
-    - between_500ms_1000ms - кол-во запросов, обработанных за время от 500ms до 1000ms
-    - greater_1000ms - кол-во запросов, обработанных за время более 1000ms
+
+
+Результат для дефолтного mode (для любого mode != quantil)
+
+  {date},{count},{count_fine},{count_normal},{count_bad}\n
+  - date - дата с точностью до минуты в формате %s (Формат можно изменить в конфиге /etc/default/log-fetcher)
+  - count - суммарное кол-во запросов
+  - count_fine - кол-во запросов, обработанных быстрее чем за 50ms
+  - count_normal - кол-во запросов, обработанных за время от 50ms до 100ms
+  - count_bad - кол-во запросов, обработанных за время более 100ms
+
+Результат для mode == quantil
+
+Вся статистика разбивается по квантилям и выдается среднее время для каждого. Пример:
+count:	7923
+time:	36000 (s)
+quantil_95.0:	93 (ms)
+quantil_98.0:	99 (ms)
+quantil_99.0:	102 (ms)
+quantil_99.5:	104 (ms)
+quantil_99.9:	106 (ms)
+
+count - общее количество всех запросов.

@@ -1,16 +1,1 @@
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/ >> /var/log/log-fetcher/data/main_page.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/tsk/ >> /var/log/log-fetcher/data/tsk_list.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/webinars/ >> /var/log/log-fetcher/data/webinars_list.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/companies/ >> /var/log/log-fetcher/data/companies_list.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/tsk/IDS/ >> /var/log/log-fetcher/data/tsk_by_category_list.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/tsk/IDS/view/ >> /var/log/log-fetcher/data/tsk_view.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/webinars/view/IDS/ >> /var/log/log-fetcher/data/webinar_view.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/coorpschool/IDS/view/ >> /var/log/log-fetcher/data/coorpschool_view.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/tsk/IDS/IDS/IDS/order/ >> /var/log/log-fetcher/data/tsk_and_webinars_order.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/coorpschool/IDS/IDS/IDS/order/ >> /var/log/log-fetcher/data/coorpschool_order.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/tsk/feedback/IDS >> /var/log/log-fetcher/data/tsk_feedback.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/webinars/feedback/IDS >> /var/log/log-fetcher/data/webinar_feedback.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/coorpschool/feedback/IDS >> /var/log/log-fetcher/data/coorpschool_feedback.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/subscription/ >> /var/log/log-fetcher/data/subscription.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 POST/search/ >> /var/log/log-fetcher/data/search.csv
-01 * * * * root /var/lib/log-fetcher/fetch.sh 3600 GET/kabinet/ >> /var/log/log-fetcher/data/kabinet.csv
+
