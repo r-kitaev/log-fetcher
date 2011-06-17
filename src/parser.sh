@@ -41,7 +41,7 @@ BEGIN{
 {
   # example log entry
   # hh-favresumes PUT /resume/open/1282694867?empinfo=emp(1282694862),mng(1282694865) HTTP/1.1 0.106 1288686990.805 200
-  match($0, /([^ ]+) (GET|POST|PUT|DELETE) ([^?]+)[^ ]+ HTTP\/[^ ]+ ([^ ]+) ([^ ]+) ([^ ]+)/, matches)
+  match($0, /([^ ]+) (GET|POST|PUT|DELETE) ([^? ]+)[^ ]* HTTP\/[^ ]+ ([^ ]+) ([^ ]+) ([^ ]+)/, matches)
 
   log_entry_app = matches[1]
   if(log_entry_app != app)
